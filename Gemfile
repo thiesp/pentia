@@ -46,3 +46,9 @@ group :development do
 
 end
 
+
+gem "devise", "~> 4.9"
+
+gem "bcrypt", "~> 3.1"
+
+gem "devise-jwt", "~> 0.11.0"
