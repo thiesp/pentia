@@ -6,7 +6,7 @@ module ApiKeyCheck
   private
   def require_api_key
     unless ActiveSupport::SecurityUtils.secure_compare(Rails.application.credentials.api_key, request.headers['Api-Key'].to_s)
-      render json: {message: "Api key required"}, status: 401
+      render json: {error: I18n.t("api_key.invalid")}, status: 401
     end
   end
 
