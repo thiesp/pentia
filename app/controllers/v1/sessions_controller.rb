@@ -10,7 +10,7 @@ class V1::SessionsController < Devise::SessionsController
 
   def_param_group :session do
     param :user, Hash, required: true do
-      param :email, /\A[^@\s]+@[^@\s]+\z/, desc: "Email for login", required: true
+      param :email, String, desc: "Email for login", required: true
       param :password, String, desc: "Password for login", required: true
     end
   end
@@ -27,8 +27,8 @@ class V1::SessionsController < Devise::SessionsController
     property :jti, String, desc: "Authentication token"
   end
   example "params: {\"user\":{\"email\":\"user@email\",\"password\":\"123456\"}}
-headers: {\"Api-Key\":\"api_key\"}"
-  example "response: {\"id\":18,\"email\":\"francis@cruickshank.test\",\"name\":\"Jospeh Wisoky\",
+headers: {\"Api-Key\":\"api_key\"}
+response: {\"id\":18,\"email\":\"francis@cruickshank.test\",\"name\":\"Jospeh Wisoky\",
   \"created_at\":\"2023-11-06T08:47:25.619Z\",\"updated_at\":\"2023-11-06T08:47:25.619Z\",\"jti\":\"8f299cb2-1418-495e-bbf0-e8386d0db044\"}"
   def create
     super
