@@ -6,5 +6,9 @@ Rails.application.routes.draw do
     post 'v1/registrations', to: 'v1/registrations#create'
   end
 
+  namespace :v1 do
+    resources :products, only: :index
+  end
+
   get "up" => "rails/health#show", as: :rails_health_check
 end
