@@ -13,7 +13,6 @@ RSpec.describe "V1::Registrations", type: :request do
         }, headers: {'Api-Key' => Rails.application.credentials.api_key }
       }.to change{ User.count }.by(1)
       expect(response).to have_http_status(201)
-      expect(User.last)
     end
 
     it "provides a auth token" do
