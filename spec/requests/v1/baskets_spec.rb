@@ -22,7 +22,6 @@ RSpec.describe "V1::Basket", type: :request do
         FactoryBot.create_list(:product,10)
         FactoryBot.create(:basket_item, basket: basket, amount: 10, product: Product.order(:name).first)
         FactoryBot.create(:basket_item, basket: basket, amount: 42, product: Product.order(:name).last)
-
       end
 
       it "lists basket items" do

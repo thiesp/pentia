@@ -6,23 +6,23 @@ class V1::BasketsController < V1::ApplicationController
   end
 
   def_param_group :list_basket_item do
-    property :amount, Integer
+    property :amount, :number
     property :name, String
     property :description, String
-    property :price, Float
-    property :id, Integer
+    property :price, :decimal
+    property :id, :number
   end
 
   def_param_group :basket_item do
     param :basket_item, Hash do
-      param :amount, Integer
-      param :product_id, Integer
+      param :amount, :number, required: true
+      param :product_id, :number, required: true
     end
   end
 
   def_param_group :remove_basket_item do
     param :basket_item, Hash do
-      param :product_id, Integer
+      param :product_id, :number, required: true
     end
   end
 

@@ -8,8 +8,8 @@ class V1::ProductsController < V1::ApplicationController
   def_param_group :product do
     property :name, String
     property :description, String
-    property :price, Float
-    property :id, Integer
+    property :price, :decimal
+    property :id, :number
   end
 
   api :GET, 'v1/products', "List all products"
