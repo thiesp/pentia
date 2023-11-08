@@ -17,7 +17,7 @@ class AddItemToBasket
       existing_item.save!
     else
       @item.basket = @basket
-      @item.save!
+      @item.save
     end
   end
 
