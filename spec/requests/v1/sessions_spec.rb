@@ -15,7 +15,7 @@ RSpec.describe "V1::Sessions", type: :request do
             password: "123456" 
           }
         }, headers: {'Api-Key' => Rails.application.credentials.api_key }
-        expect(response).to have_http_status(201)
+        expect(response).to have_http_status(200)
       end
 
       it "provides a auth token" do
@@ -25,7 +25,7 @@ RSpec.describe "V1::Sessions", type: :request do
             password: "123456" 
           }
         }, headers: {'Api-Key' => Rails.application.credentials.api_key }
-        expect(JSON.parse(response.body)['jti']).to_not be_empty
+        expect(JSON.parse(response.body)['token']).to_not be_empty
       end
 
       it "rejects wrong credentials" do

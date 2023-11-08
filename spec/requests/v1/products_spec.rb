@@ -1,10 +1,16 @@
 require 'rails_helper'
 
 RSpec.describe "V1::Products", type: :request do
+  let(:user) {FactoryBot.build(:user)}
+  before(:each) do 
+    user.save!
+  end
+  let(:headers) { Devise::JWT::TestHelpers.auth_headers({'Api-Key' => Rails.application.credentials.api_key }, user)}
+
   describe "GET /v1/products" do
     context "without products" do
       it "returns an empty array" do
-        get v1_products_path+".json", headers: {'Api-Key' => Rails.application.credentials.api_key }
+        get v1_products_path+".json", headers: headers
         expect(response).to have_http_status(200)
         expect(response.body).to eq ("\[\]")
       end
@@ -16,7 +22,7 @@ RSpec.describe "V1::Products", type: :request do
       end
 
       it "lists products" do
-        get v1_products_path+".json", headers: {'Api-Key' => Rails.application.credentials.api_key }
+        get v1_products_path+".json", headers: headers
         expect(response).to have_http_status(200)
         list = JSON.parse(response.body)
         expect(list.count).to eq 10

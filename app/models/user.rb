@@ -8,4 +8,12 @@ class User < ApplicationRecord
   # disable all notifications
   def send_devise_notification(notification, *args)
   end
+
+  def token
+    scope ||= Devise::Mapping.find_scope!(self)
+    token, payload = Warden::JWTAuth::UserEncoder.new.call(
+      self, scope, nil
+    )
+    token
+  end
 end

@@ -1,4 +1,5 @@
 class V1::RegistrationsController < Devise::RegistrationsController
+  skip_before_action :authenticate_user!
   include RackSessionFix # Workaround for https://github.com/heartcombo/devise/issues/5473#issuecomment-1078475813
 
   respond_to :json
@@ -22,17 +23,14 @@ class V1::RegistrationsController < Devise::RegistrationsController
   param_group :user
   error :unprocessable_entity, "Invalid user"
   returns code: :created, desc: "Success" do
-    property :id, Integer
     property :email, String
     property :name, String
-    property :create_at, Time
-    property :updated_at, Time
-    property :jti, String, desc: "Authentication token"
+    property :token, String, desc: "Authentication token"
   end
   example "params: {\"user\":{\"name\":\"Jospeh Wisoky\",\"email\":\"user@email\",\"password\":\"123456\"}}
 headers: {\"Api-Key\":\"api_key\"}
-response: {\"id\":18,\"email\":\"francis@cruickshank.test\",\"name\":\"Jospeh Wisoky\",
-  \"created_at\":\"2023-11-06T08:47:25.619Z\",\"updated_at\":\"2023-11-06T08:47:25.619Z\",\"jti\":\"8f299cb2-1418-495e-bbf0-e8386d0db044\"}"
+response: {\"email\":\"francis@cruickshank.test\",\"name\":\"Jospeh Wisoky\",
+  \"token\":\"eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiI4YzhiMzIwZS1hMTlkLTRlYjgtYjAwYS0wNjY3ODg0YjA4OGYiLCJzdWIiOiI3OCIsInNjcCI6InVzZXIiLCJhdWQiOm51bGwsImlhdCI6MTY5OTQzMTMyMSwiZXhwIjoxNjk5NDM0OTIxfQ._8Gl6cP1G0mLJRwOwaZqWxR_o_UvC20tOu8IqOHFo7M\"}"
   def create
     super
   end
