@@ -6,7 +6,6 @@ class V1::SessionsController < Devise::SessionsController
     short 'Sessions'
     formats ['json']
     api_version '1'
-    
   end
 
   def_param_group :session do
@@ -19,7 +18,7 @@ class V1::SessionsController < Devise::SessionsController
   api :POST, 'v1/sessions', "Login to a new session"
   param_group :session
   error :unauthorized, I18n.t('devise.failure.invalid')
-  returns code: :created, desc: "Success" do
+  returns code: :ok, desc: "Success" do
     property :email, String
     property :name, String
     property :token, String, desc: "Authentication token"

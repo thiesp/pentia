@@ -8,7 +8,6 @@ class V1::RegistrationsController < Devise::RegistrationsController
     short 'Registrations'
     formats ['json']
     api_version '1'
-    
   end
 
   def_param_group :user do
@@ -22,7 +21,7 @@ class V1::RegistrationsController < Devise::RegistrationsController
   api :POST, 'v1/registrations', "Create a new user"
   param_group :user
   error :unprocessable_entity, "Invalid user"
-  returns code: :created, desc: "Success" do
+  returns code: :ok, desc: "Success" do
     property :email, String
     property :name, String
     property :token, String, desc: "Authentication token"
