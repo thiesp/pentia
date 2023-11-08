@@ -1,6 +1,4 @@
 class V1::ProductsController < V1::ApplicationController
-  respond_to :json
-
   resource_description do
     short 'Products'
   end

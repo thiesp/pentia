@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :jwt_authenticatable, jwt_revocation_strategy: self
 
   has_one :basket
+  has_many :orders
   validates_presence_of :name
 
   # disable all notifications

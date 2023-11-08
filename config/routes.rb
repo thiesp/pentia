@@ -12,6 +12,7 @@ Rails.application.routes.draw do
       put :add_item
       put :remove_item
     end
+    resources :orders, only: [:index,:create]
   end
 
   get "up" => "rails/health#show", as: :rails_health_check

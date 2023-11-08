@@ -1,6 +1,4 @@
 class V1::BasketsController < V1::ApplicationController
-  respond_to :json
-
   resource_description do
     short 'Basket'
   end
