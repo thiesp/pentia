@@ -2,8 +2,6 @@
 
 * Ruby version 3.2.2
 
-* System dependencies
-
 * Install gems
 
 `gem install bundler`
@@ -23,6 +21,10 @@ Creates some products to play with
 * How to run the test suite
 
 `bundle exec rspec`
+
+* Start server
+
+`rails s`
 
 * Queries
 
@@ -132,3 +134,57 @@ curl --location 'localhost:3000/v1/products.json' \
     }
 ]
 ```
+
+Add items to basket
+
+```
+curl --location --request PUT 'localhost:3000/v1/basket/add_item.json' \
+--header 'Api-Key: f85e7fe6a5443b5aebb704a705051dcc887586109436040c2a117d06f15f65dafff88d100848ca3dda067fe4c2f5ecf9eabb05878078aa08b2e49bb9be57d144' \
+--header 'Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiJiN2M0ZTM1MS02MTY5LTRhZjktYTdiYi1iM2QzZjU5NjQ0N2IiLCJzdWIiOiIyIiwic2NwIjoidXNlciIsImF1ZCI6bnVsbCwiaWF0IjoxNjk5NjA5Njc4LCJleHAiOjE2OTk2MTMyNzh9.mabywRuW5F-QoB5iyr6ly9Vr0i-0O7hzg5JTILWv3n0' \
+--header 'Content-Type: application/json' \
+--data '{"basket_item":{"product_id": 12, "amount": "5"}}'
+```
+Status 200
+
+GET basket
+
+```
+curl --location 'localhost:3000/v1/basket.json' \
+--header 'Api-Key: f85e7fe6a5443b5aebb704a705051dcc887586109436040c2a117d06f15f65dafff88d100848ca3dda067fe4c2f5ecf9eabb05878078aa08b2e49bb9be57d144' \
+--header 'Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiJiN2M0ZTM1MS02MTY5LTRhZjktYTdiYi1iM2QzZjU5NjQ0N2IiLCJzdWIiOiIyIiwic2NwIjoidXNlciIsImF1ZCI6bnVsbCwiaWF0IjoxNjk5NjA5Njc4LCJleHAiOjE2OTk2MTMyNzh9.mabywRuW5F-QoB5iyr6ly9Vr0i-0O7hzg5JTILWv3n0'
+```
+
+```
+[
+    {
+        "name": "Awesome Wooden Keyboard",
+        "description": "Consequuntur doloremque et molestiae.",
+        "product_id": 12,
+        "price": "97.71",
+        "amount": 5
+    }
+]
+```
+
+Remove items from basket
+
+```
+curl --location --request PUT 'localhost:3000/v1/basket/remove_item.json' \
+--header 'Api-Key: f85e7fe6a5443b5aebb704a705051dcc887586109436040c2a117d06f15f65dafff88d100848ca3dda067fe4c2f5ecf9eabb05878078aa08b2e49bb9be57d144' \
+--header 'Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiJiN2M0ZTM1MS02MTY5LTRhZjktYTdiYi1iM2QzZjU5NjQ0N2IiLCJzdWIiOiIyIiwic2NwIjoidXNlciIsImF1ZCI6bnVsbCwiaWF0IjoxNjk5NjA5Njc4LCJleHAiOjE2OTk2MTMyNzh9.mabywRuW5F-QoB5iyr6ly9Vr0i-0O7hzg5JTILWv3n0' \
+--header 'Content-Type: application/json' \
+--data '{"basket_item":{"product_id": 12}}'
+```
+
+Status 200
+
+Empty basket
+
+```
+curl --location --request DELETE 'localhost:3000/v1/basket.json' \
+--header 'Api-Key: f85e7fe6a5443b5aebb704a705051dcc887586109436040c2a117d06f15f65dafff88d100848ca3dda067fe4c2f5ecf9eabb05878078aa08b2e49bb9be57d144' \
+--header 'Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiJiN2M0ZTM1MS02MTY5LTRhZjktYTdiYi1iM2QzZjU5NjQ0N2IiLCJzdWIiOiIyIiwic2NwIjoidXNlciIsImF1ZCI6bnVsbCwiaWF0IjoxNjk5NjA5Njc4LCJleHAiOjE2OTk2MTMyNzh9.mabywRuW5F-QoB5iyr6ly9Vr0i-0O7hzg5JTILWv3n0' \
+--data ''
+```
+
+Status 200
