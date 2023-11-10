@@ -20,7 +20,72 @@ Creates some products to play with
 
 * How to run the test suite
 
-`bundle exec rspec`
+`bundle exec rspec -fd`
+
+```
+V1::Basket
+  GET /v1/basket
+    without items
+      returns an empty array
+    with items
+      lists basket items
+  PUT /v1/basket/add_item
+    adds an item to the basket
+    does not add unknown products
+    with full basket
+      removes basket items without amount
+  PUT /v1/basket/remove_item
+    with full basket
+      remove an item from the basket
+    with empty basket
+      remove an item from the basket
+  DELETE /v1/basket
+    with full basket
+      empties the basket
+    without basket
+      answers ok
+
+V1::Orders
+  GET /v1/orders
+    without orders
+      returns an empty array
+    with an order
+      returns array with that order
+      with changing price
+        returns array with that order where the price remains the old price
+  POST /v1/orders
+    with full basket
+      creates a new order
+    with empty basket
+      does not create a new order
+
+V1::Products
+  GET /v1/products
+    without products
+      returns an empty array
+    with products
+      lists products
+
+V1::Registrations
+  POST /v1/registrations
+    create a new user
+    provides a auth token
+    rejects wrong email
+    rejects too short passwords
+    with user
+      rejects existing users
+
+V1::Sessions
+  with user
+    POST /v1/sessions
+      create a new session
+      provides a auth token
+      rejects wrong credentials
+      rejects wrong api key
+
+Finished in 0.41172 seconds (files took 0.56549 seconds to load)
+25 examples, 0 failures
+```
 
 * Start server
 
