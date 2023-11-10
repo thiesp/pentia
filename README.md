@@ -3,9 +3,11 @@
 As this is an assignment rather then a real project
 
 Masterkey
+
 `6b1d47d57c08bbcc2edd2eae188c11bb`
 
 Api-Key
+
 `f85e7fe6a5443b5aebb704a705051dcc887586109436040c2a117d06f15f65dafff88d100848ca3dda067fe4c2f5ecf9eabb05878078aa08b2e49bb9be57d144`
 
 * Ruby version 3.2.2
