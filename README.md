@@ -26,6 +26,10 @@ Creates some products to play with
 
 `rails s`
 
+* API documentation
+
+`http://localhost:3000/apipie/1.html`
+
 * Queries
 
 Register a user
