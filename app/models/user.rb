@@ -4,8 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable, :validatable,
          :jwt_authenticatable, jwt_revocation_strategy: self
 
-  has_one :basket
-  has_many :orders
+  has_one :basket, dependent: :destroy
+  has_many :orders, dependent: :destroy
   validates_presence_of :name
 
   # disable all notifications
