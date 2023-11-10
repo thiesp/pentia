@@ -13,7 +13,7 @@ class V1::BasketsController < V1::ApplicationController
 
   def_param_group :basket_item do
     param :basket_item, Hash do
-      param :amount, /^[-]?[0-9]*/, required: true, desc: "Negative and positive amount"
+      param :amount, :amount, required: true
       param :product_id, :number, required: true
     end
   end
