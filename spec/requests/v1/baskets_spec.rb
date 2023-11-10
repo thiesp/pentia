@@ -56,6 +56,21 @@ RSpec.describe "V1::Basket", type: :request do
       }.to change{BasketItem.count}.by(0)
       expect(response).to have_http_status(200)
     end
+
+    context "with full basket" do
+      let(:product) {FactoryBot.create(:product)}
+      let(:second_product) {FactoryBot.create(:product)}
+      let(:basket) {FactoryBot.create(:basket, user: user)}
+      let!(:basket_item) {FactoryBot.create(:basket_item, basket: basket, product: product, amount: 13)}
+      let!(:second_basket_item) {FactoryBot.create(:basket_item, basket: basket, product: second_product, amount: 17)}
+
+      it "removes basket items without amount" do
+        expect{
+          put add_item_v1_basket_path+".json", headers: headers, params: {basket_item: {product_id: product.id, amount: (-1)*basket_item.amount}}
+        }.to change{BasketItem.count}.by(-1)
+        expect(response).to have_http_status(200)
+      end
+    end
   end
 
   describe "PUT /v1/basket/remove_item" do

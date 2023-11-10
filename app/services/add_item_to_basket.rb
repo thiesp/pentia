@@ -14,11 +14,15 @@ class AddItemToBasket
     existing_item = @basket.basket_items.find_by_product_id(@item.product_id)
     if existing_item
       existing_item.amount += @item.amount
-      existing_item.save!
+      existing_item.save
     else
       @item.basket = @basket
       @item.save
     end
+    remove_items_without_amount
   end
 
+  def remove_items_without_amount
+    @basket.basket_items.where(amount: 0).destroy_all
+  end
 end
