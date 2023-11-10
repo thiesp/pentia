@@ -192,3 +192,39 @@ curl --location --request DELETE 'localhost:3000/v1/basket.json' \
 ```
 
 Status 200
+
+Create order from basket
+
+```
+curl --location --request POST 'localhost:3000/v1/orders.json' \
+--header 'Api-Key: f85e7fe6a5443b5aebb704a705051dcc887586109436040c2a117d06f15f65dafff88d100848ca3dda067fe4c2f5ecf9eabb05878078aa08b2e49bb9be57d144' \
+--header 'Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiJiN2M0ZTM1MS02MTY5LTRhZjktYTdiYi1iM2QzZjU5NjQ0N2IiLCJzdWIiOiIyIiwic2NwIjoidXNlciIsImF1ZCI6bnVsbCwiaWF0IjoxNjk5NjA5Njc4LCJleHAiOjE2OTk2MTMyNzh9.mabywRuW5F-QoB5iyr6ly9Vr0i-0O7hzg5JTILWv3n0' \
+--data ''
+```
+
+Status 200
+
+GET orders
+
+```
+curl --location 'localhost:3000/v1/orders.json' \
+--header 'Api-Key: f85e7fe6a5443b5aebb704a705051dcc887586109436040c2a117d06f15f65dafff88d100848ca3dda067fe4c2f5ecf9eabb05878078aa08b2e49bb9be57d144' \
+--header 'Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiJiN2M0ZTM1MS02MTY5LTRhZjktYTdiYi1iM2QzZjU5NjQ0N2IiLCJzdWIiOiIyIiwic2NwIjoidXNlciIsImF1ZCI6bnVsbCwiaWF0IjoxNjk5NjA5Njc4LCJleHAiOjE2OTk2MTMyNzh9.mabywRuW5F-QoB5iyr6ly9Vr0i-0O7hzg5JTILWv3n0' \
+--data ''
+```
+
+```
+[
+    {
+        "id": 1,
+        "order_items": [
+            {
+                "name": "Awesome Wooden Keyboard",
+                "description": "Consequuntur doloremque et molestiae.",
+                "price": "97.71",
+                "amount": 5
+            }
+        ]
+    }
+]
+```
