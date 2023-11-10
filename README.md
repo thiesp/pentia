@@ -28,7 +28,7 @@ Creates some products to play with
 
 * API documentation
 
-`http://localhost:3000/apipie/1.html`
+[http://localhost:3000/apipie/1.html](http://localhost:3000/apipie/1.html)
 
 * Queries
 
